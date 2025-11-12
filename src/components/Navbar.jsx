@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Menu, X, Candy, ShoppingBag } from 'lucide-react'
+import { Menu, X, Candy, ShoppingBag, Phone } from 'lucide-react'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -7,6 +7,7 @@ export default function Navbar() {
   const navItems = [
     { href: '#collection', label: 'Collection' },
     { href: '#best-sellers', label: 'Best Sellers' },
+    { href: '#order', label: 'Order' },
     { href: '#about', label: 'About' },
     { href: '#contact', label: 'Contact' },
   ]
@@ -26,8 +27,8 @@ export default function Navbar() {
                 {item.label}
               </a>
             ))}
-            <a href="#collection" className="inline-flex items-center gap-2 rounded-full bg-pink-600 text-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-pink-700 transition-colors">
-              <ShoppingBag className="h-4 w-4" /> Shop
+            <a href="#order" className="inline-flex items-center gap-2 rounded-full bg-pink-600 text-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-pink-700 transition-colors">
+              <Phone className="h-4 w-4" /> Order Now
             </a>
           </nav>
 
@@ -45,8 +46,8 @@ export default function Navbar() {
                 {item.label}
               </a>
             ))}
-            <a href="#collection" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 rounded-full bg-pink-600 text-white px-4 py-2 text-sm font-medium shadow-sm">
-              <ShoppingBag className="h-4 w-4" /> Shop
+            <a href="#order" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 rounded-full bg-pink-600 text-white px-4 py-2 text-sm font-medium shadow-sm">
+              <Phone className="h-4 w-4" /> Order Now
             </a>
           </div>
         </div>
