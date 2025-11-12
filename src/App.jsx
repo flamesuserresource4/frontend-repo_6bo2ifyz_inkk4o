@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import ChocolateCard from './components/ChocolateCard'
 import ChocolateDetail from './pages/ChocolateDetail'
+import SkeletonCard from './components/SkeletonCard'
 
 const fallbackSamples = [
   {
@@ -110,29 +111,29 @@ function Home() {
   const categories = ['All', 'Truffle', 'Bonbon', 'Bar']
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 to-orange-50 dark:from-neutral-950 dark:to-neutral-900">
       <Navbar />
       <Hero />
 
       <section id="collection" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900">Our Collection</h2>
-            <p className="mt-1 text-neutral-600">Explore our seasonal assortment of handmade treats</p>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">Our Collection</h2>
+            <p className="mt-1 text-neutral-600 dark:text-neutral-400">Explore our seasonal assortment of handmade treats</p>
           </div>
           <div className="flex items-center gap-3">
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search flavors..."
-              className="h-10 w-48 rounded-full border px-4 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40"
+              className="h-10 w-48 rounded-full border px-4 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40 bg-white/80 dark:bg-neutral-900 dark:text-neutral-100 dark:border-neutral-800"
             />
-            <div className="flex items-center rounded-full border p-1 bg-white">
+            <div className="flex items-center rounded-full border p-1 bg-white dark:bg-neutral-900 dark:border-neutral-800">
               {categories.map((c) => (
                 <button
                   key={c}
                   onClick={() => setCategory(c)}
-                  className={`px-3 py-1 text-sm rounded-full transition ${category === c ? 'bg-pink-600 text-white' : 'text-neutral-700 hover:bg-neutral-100'}`}
+                  className={`px-3 py-1 text-sm rounded-full transition ${category === c ? 'bg-pink-600 text-white' : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800'}`}
                 >
                   {c}
                 </button>
@@ -142,7 +143,11 @@ function Home() {
         </div>
 
         {loading ? (
-          <div className="grid place-items-center py-20">Loading...</div>
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
         ) : (
           <motion.div
             initial="hidden"
@@ -160,10 +165,10 @@ function Home() {
         )}
       </section>
 
-      <section id="best-sellers" className="bg-white/60 border-y">
+      <section id="best-sellers" className="bg-white/60 dark:bg-neutral-950/40 border-y border-neutral-100 dark:border-neutral-800/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900">Best Sellers</h2>
-          <p className="mt-1 text-neutral-600">Fan favorites that never go out of style</p>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">Best Sellers</h2>
+          <p className="mt-1 text-neutral-600 dark:text-neutral-400">Fan favorites that never go out of style</p>
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
             {items.slice(0, 4).map((item) => (
               <ChocolateCard key={`best-${item.id}`} item={item} />
@@ -175,25 +180,25 @@ function Home() {
       <section id="order" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-2 gap-10 items-start">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900">Order Now</h2>
-            <p className="mt-2 text-neutral-600">Place an order for pickup or delivery. Well confirm details within 24 hours.</p>
-            <div className="mt-6 rounded-2xl border bg-white p-6 shadow-sm">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">Order Now</h2>
+            <p className="mt-2 text-neutral-600 dark:text-neutral-400">Place an order for pickup or delivery. Well confirm details within 24 hours.</p>
+            <div className="mt-6 rounded-2xl border bg-white dark:bg-neutral-900 dark:border-neutral-800 p-6 shadow-sm">
               <dl className="grid sm:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <dt className="text-neutral-500">Phone</dt>
-                  <dd className="font-medium text-neutral-900">(555) 123-4567</dd>
+                  <dt className="text-neutral-500 dark:text-neutral-400">Phone</dt>
+                  <dd className="font-medium text-neutral-900 dark:text-neutral-100">(555) 123-4567</dd>
                 </div>
                 <div>
-                  <dt className="text-neutral-500">Email</dt>
-                  <dd className="font-medium text-neutral-900">orders@florachocolatier.com</dd>
+                  <dt className="text-neutral-500 dark:text-neutral-400">Email</dt>
+                  <dd className="font-medium text-neutral-900 dark:text-neutral-100">orders@florachocolatier.com</dd>
                 </div>
                 <div>
-                  <dt className="text-neutral-500">Hours</dt>
-                  <dd className="font-medium text-neutral-900">MonSat, 10am6pm</dd>
+                  <dt className="text-neutral-500 dark:text-neutral-400">Hours</dt>
+                  <dd className="font-medium text-neutral-900 dark:text-neutral-100">Mon–Sat, 10am–6pm</dd>
                 </div>
                 <div>
-                  <dt className="text-neutral-500">Location</dt>
-                  <dd className="font-medium text-neutral-900">123 Cocoa Lane, Sweet City</dd>
+                  <dt className="text-neutral-500 dark:text-neutral-400">Location</dt>
+                  <dd className="font-medium text-neutral-900 dark:text-neutral-100">123 Cocoa Lane, Sweet City</dd>
                 </div>
               </dl>
               <a
@@ -216,30 +221,30 @@ function Home() {
               const body = encodeURIComponent(`Hello, I'd like to place an order.\n- Items: ${item}\n- Quantity: ${qty}\n- Preferred pickup/delivery date: ${date}\n- Name: ${name}\n- Phone: ${phone}`)
               window.location.href = `mailto:orders@florachocolatier.com?subject=New%20Order%20Request&body=${body}`
             }}
-            className="rounded-2xl border bg-white p-6 shadow-sm"
+            className="rounded-2xl border bg-white dark:bg-neutral-900 dark:border-neutral-800 p-6 shadow-sm"
           >
-            <h3 className="text-lg font-semibold text-neutral-900">Quick Order Form</h3>
-            <p className="text-sm text-neutral-600">Well get back to you to confirm.</p>
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">Quick Order Form</h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">Well get back to you to confirm.</p>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-sm text-neutral-600">Your Name</label>
-                <input name="name" required className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40" />
+                <label className="text-sm text-neutral-600 dark:text-neutral-400">Your Name</label>
+                <input name="name" required className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40 bg-white/80 dark:bg-neutral-950 dark:text-neutral-100 dark:border-neutral-800" />
               </div>
               <div>
-                <label className="text-sm text-neutral-600">Phone</label>
-                <input name="phone" required className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40" />
+                <label className="text-sm text-neutral-600 dark:text-neutral-400">Phone</label>
+                <input name="phone" required className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40 bg-white/80 dark:bg-neutral-950 dark:text-neutral-100 dark:border-neutral-800" />
               </div>
               <div className="sm:col-span-2">
-                <label className="text-sm text-neutral-600">Item(s)</label>
-                <input name="item" required placeholder="e.g. 6x Sea Salt Caramel, 1x 70% Bar" className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40" />
+                <label className="text-sm text-neutral-600 dark:text-neutral-400">Item(s)</label>
+                <input name="item" required placeholder="e.g. 6x Sea Salt Caramel, 1x 70% Bar" className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40 bg-white/80 dark:bg-neutral-950 dark:text-neutral-100 dark:border-neutral-800" />
               </div>
               <div>
-                <label className="text-sm text-neutral-600">Quantity</label>
-                <input name="qty" type="number" min="1" defaultValue="1" className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40" />
+                <label className="text-sm text-neutral-600 dark:text-neutral-400">Quantity</label>
+                <input name="qty" type="number" min="1" defaultValue="1" className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40 bg-white/80 dark:bg-neutral-950 dark:text-neutral-100 dark:border-neutral-800" />
               </div>
               <div>
-                <label className="text-sm text-neutral-600">Preferred Date</label>
-                <input name="date" type="date" className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40" />
+                <label className="text-sm text-neutral-600 dark:text-neutral-400">Preferred Date</label>
+                <input name="date" type="date" className="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/40 bg-white/80 dark:bg-neutral-950 dark:text-neutral-100 dark:border-neutral-800" />
               </div>
             </div>
             <button type="submit" className="mt-6 inline-flex items-center rounded-full bg-neutral-900 text-white px-6 py-3 text-sm font-medium hover:bg-neutral-800 transition">Send Order</button>
@@ -253,8 +258,8 @@ function Home() {
             <img src="https://images.unsplash.com/photo-1760764541302-e3955fbc6b2b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxjZXJhbWljJTIwcG90dGVyeSUyMGhhbmRtYWRlfGVufDB8MHx8fDE3NjI5MTcyNDJ8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80" className="w-full"/>
           </div>
           <div>
-            <h3 className="text-2xl font-bold tracking-tight text-neutral-900">Our Story</h3>
-            <p className="mt-2 text-neutral-600">We hand-temper in small batches using single-origin cacao and local cream. Every piece is finished by hand, resulting in nuanced textures and flavors.</p>
+            <h3 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">Our Story</h3>
+            <p className="mt-2 text-neutral-600 dark:text-neutral-400">We hand-temper in small batches using single-origin cacao and local cream. Every piece is finished by hand, resulting in nuanced textures and flavors.</p>
           </div>
         </div>
       </section>

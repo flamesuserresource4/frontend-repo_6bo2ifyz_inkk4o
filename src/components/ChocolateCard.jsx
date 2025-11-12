@@ -5,10 +5,10 @@ export default function ChocolateCard({ item }) {
   return (
     <motion.div
       whileHover={{ y: -6 }}
-      className="group rounded-2xl border bg-white p-3 shadow-sm hover:shadow-md transition-shadow"
+      className="group rounded-2xl border bg-white dark:bg-neutral-900 dark:border-neutral-800 p-3 shadow-sm hover:shadow-md transition-shadow"
     >
       <Link to={`/chocolate/${item.id}`} className="block">
-        <div className="aspect-[4/3] w-full rounded-xl bg-neutral-100 overflow-hidden">
+        <div className="aspect-[4/3] w-full rounded-xl bg-neutral-100 dark:bg-neutral-800 overflow-hidden">
           <img
             src={item.image}
             alt={item.name}
@@ -18,10 +18,10 @@ export default function ChocolateCard({ item }) {
         </div>
         <div className="mt-3">
           <div className="flex items-baseline justify-between">
-            <h3 className="font-semibold text-neutral-900">{item.name}</h3>
+            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">{item.name}</h3>
             <span className="text-sm font-medium text-pink-600">${item.price.toFixed(2)}</span>
           </div>
-          <p className="mt-1 text-sm text-neutral-600 line-clamp-2">{item.description}</p>
+          <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">{item.description}</p>
           <div className="mt-2 flex items-center gap-2">
             <span className="inline-flex items-center rounded-full bg-pink-50 text-pink-700 px-2 py-0.5 text-xs">{item.category}</span>
             {item.cacao_percent != null && (
